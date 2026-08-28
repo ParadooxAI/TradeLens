@@ -25,7 +25,7 @@
 
 
 <div align="center" style="display: flex; gap: 5px; justify-content: center;">
-  <a href=""><img src="https://img.shields.io/badge/🏠_Homepage-blue?style=for-the-badge"/></a>
+  <a href="https://paradooxai.github.io/TradeLens/"><img src="https://img.shields.io/badge/🏠_Homepage-blue?style=for-the-badge"/></a>
   <a href="https://arxiv.org/abs/2607.10286"><img src="https://img.shields.io/badge/arXiv-red?style=for-the-badge&logo=arxiv"/></a>
   <a href="https://github.com/ParadooxAI/TradeLens"><img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github"/></a>
   <a href="https://github.com/ParadooxAI/TradeLens/stargazers"><img src="https://img.shields.io/github/stars/ParadooxAI/TradeLens?style=for-the-badge&color=white"/></a>
