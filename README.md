@@ -110,12 +110,12 @@ TradeLens/
   - [CLI](#cli)
   - [Inputs (`data/` + configuration)](#inputs-data--configuration)
   - [Outputs (`result/`)](#outputs-result)
-- [Integrate with your agentic trading system](#integrate-with-your-agentic-trading-system)
+- [🔌 Integrate with your agentic trading system](#-integrate-with-your-agentic-trading-system)
   - [Step 1. Export `experiment_records.jsonl`](#step-1-export-experiment_recordsjsonl)
   - [Step 2. Record your setting to `static.json`](#step-2-record-your-setting-to-staticjson)
   - [Step 3. Provide prices data (`price-data.jsonl`)](#step-3-provide-prices-data-price-datajsonl)
   - [Step 4. Run TradeLens on your exported artifacts](#step-4-run-tradelens-on-your-exported-artifacts)
-- [Troubleshooting](#troubleshooting)
+- [🔧 Troubleshooting](#-troubleshooting)
 
 
 ## 📝 Usage
@@ -174,7 +174,7 @@ Common files:
 
 
 
-## Integrate with your agentic trading system
+## 🔌 Integrate with your agentic trading system
 
 TradeLens is an **after-the-fact** analysis toolkit: you run your own agentic trading system, export its records/traces, then run TradeLens to attribute profit & cost and generate reports.
 
@@ -229,7 +229,7 @@ python main.py --records /path/to/experiment_records.jsonl --static /path/to/sta
 
 If your system makes multiple intraday decisions, pre-aggregate records to hourly entries.
 
-## Troubleshooting
+## 🔧 Troubleshooting
 
 - **`records_path not found` / `static_path not found`**: ensure `config.json` points to existing files under `data/`, or pass `--records/--static` explicitly.
 - **Profit breakdown warning about BUY/SELL**: if your records contain only `HOLD` days (no executed trades), profit breakdown charts/attribution may be skipped.

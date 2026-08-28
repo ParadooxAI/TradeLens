@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="TradeLens is a trace-grounded toolkit for measuring and diagnosing whether LLM trading agents convert intelligence costs into incremental profit.">
+  <meta property="og:title" content="Can Agentic Trading Systems Pay for Their Own Intelligence?"/>
+  <meta property="og:description" content="TradeLens diagnoses whether agentic trading systems convert LLM intelligence costs into incremental profit."/>
+  <meta property="og:url" content="https://github.com/ParadooxAI/TradeLens"/>
+  <meta property="og:image" content="homepage/static/images/teaser.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <meta name="twitter:title" content="Can Agentic Trading Systems Pay for Their Own Intelligence?">
+  <meta name="twitter:description" content="TradeLens diagnoses whether agentic trading systems convert LLM intelligence costs into incremental profit.">
+  <meta name="twitter:image" content="homepage/static/images/teaser.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="keywords" content="TradeLens, agentic trading, LLM agents, profit-cost viability, agentic viability, EMNLP 2026">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="citation_title" content="Can Agentic Trading Systems Pay for Their Own Intelligence?">
+  <meta name="citation_arxiv_id" content="2607.10286">
+  <meta name="citation_author" content="Qiqi Duan">
+  <meta name="citation_author" content="Changlun Li">
+  <meta name="citation_author" content="Chen Wang">
+  <meta name="citation_author" content="Fan Zhang">
+  <meta name="citation_author" content="Mengxiang Wang">
+  <meta name="citation_author" content="Dayi Miao">
+  <meta name="citation_author" content="Peixian Ma">
+  <meta name="citation_author" content="Jiangpeng Yan">
+  <meta name="citation_author" content="Liyuan Chen">
+  <meta name="citation_author" content="Shuoling Liu">
+  <meta name="citation_author" content="Preslav Nakov">
+  <meta name="citation_author" content="Yuyu Luo">
+  <meta name="citation_author" content="Nan Tang">
+  <meta name="citation_publication_date" content="2026/07/11">
+  <meta name="citation_conference_title" content="Findings of EMNLP 2026">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2607.10286.pdf">
+
+  <title>TradeLens: Can Agentic Trading Systems Pay for Their Own Intelligence?</title>
+  <link rel="icon" type="image/png" href="homepage/static/images/web-logo.png">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="homepage/static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="homepage/static/css/index.css">
+
+  <script defer src="homepage/static/js/index.js"></script>
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+  <section class="header-logos">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered is-vcentered">
+        <div class="column is-narrow">
+          <div class="logo-container">
+            <div class="conference-logo">
+              <img src="homepage/static/images/emnlp2026.png" alt="EMNLP" style="height: 24px;"/>
+            </div>
+          </div>
+        </div>
+        <div class="column is-narrow">
+          <div class="logo-separator" style="width: 1px; height: 28px; background-color: #dbdbdb; margin: 0 2rem;"></div>
+        </div>
+        <div class="column is-narrow">
+          <div class="logo-container">
+            <div class="institution-logos" style="display: flex; align-items: center; gap: 2.5rem;">
+              <div class="institution-logo">
+                <img src="homepage/static/images/icon.jpg" alt="Paradoox AI" style="display: block; height: 24px;"/>
+              </div>
+              <div class="institution-logo">
+                <img src="homepage/static/images/hkust_logo.png" alt="HKUST(GZ)" style="display: block; height: 38px; transform: translateY(-3px);"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">Can Agentic Trading Systems Pay for Their Own Intelligence?</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">Qiqi Duan<sup>1,*</sup>,</span>
+              <span class="author-block">Changlun Li<sup>2,*</sup>,</span>
+              <span class="author-block">Chen Wang<sup>1,*</sup>,</span>
+              <span class="author-block">Fan Zhang<sup>4,5</sup>,</span>
+              <span class="author-block">Mengxiang Wang<sup>1</sup>,</span>
+              <span class="author-block">Dayi Miao<sup>1</sup>,</span>
+              <span class="author-block">Peixian Ma<sup>2</sup>,</span>
+              <span class="author-block">Jiangpeng Yan<sup>3</sup>,</span>
+              <span class="author-block">Liyuan Chen<sup>3</sup>,</span>
+              <span class="author-block">Shuoling Liu<sup>3</sup>,</span>
+              <span class="author-block">Preslav Nakov<sup>4</sup>,</span>
+              <span class="author-block">Yuyu Luo<sup>1,2</sup>,</span>
+              <span class="author-block"><a href="mailto:nantang@hkust-gz.edu.cn">Nan Tang</a><sup>1,2,&dagger;</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <sup>1</sup>HKUST(GZ),
+                <sup>2</sup>Paradoox AI,
+                <sup>3</sup>E Fund Management Co., Ltd,<br>
+                <sup>4</sup>MBZUAI,
+                <sup>5</sup>The University of Tokyo
+              </span>
+              <span class="eql-cntrb"><small><br><sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>&dagger;</sup>Corresponding author</small></span>
+            </div>
+
+            <span class="author-block" style="color: rgb(128, 0, 128); font-weight: bold; font-size: 1.2em;">🎉 Accepted by EMNLP 2026 Findings 🎉</span>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2607.10286.pdf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/ParadooxAI/TradeLens" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified" style="line-height: 1.7; color: #2c3e50;">
+          <p style="margin-bottom: 1.5rem;">
+            Large language model (LLM) agents are increasingly used in trading systems, where model reasoning, tool use, and continual decisions incur costs that are expected to produce trading value. Existing evaluations typically report performance metrics, but rarely examine <strong style="color: #3273dc;">agentic viability</strong>: whether dynamic LLM-mediated decisions convert their induced costs into measurable incremental profit.
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            Despite promising results, <strong style="color: #3273dc;">a profit-side and cost-side double blind</strong> remains. Gross profit can overstate decision value when the agent does not outperform passive market exposure, and can overstate deployability when end-to-end costs absorb the realized margin.
+          </p>
+          <p style="margin-bottom: 1.5rem;">
+            To apply this criterion, we introduce <strong style="color: #3273dc;">TradeLens</strong>, a trace-grounded diagnostic toolkit for evaluating agentic trading systems from their trading records, runtime traces, and deployment configurations. It reconstructs trading trajectories, attributes profit and cost to interpretable evidence, and diagnoses whether and why an agent pays for its own intelligence.
+          </p>
+          <div style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%); border-left: 4px solid #3273dc; padding: 1.5rem; margin: 2rem 0; border-radius: 6px;">
+            <p style="margin-bottom: 0; color: #2c3e50;">
+              <strong>Key finding:</strong> viability hinges on intelligence-to-profit conversion: models exhibit different failure patterns, such as poor asset selection in DeepSeek-V3.2 and negative timing in GLM-4.7, while capital scale, trading frequency, and architecture matter only by amplifying or degrading decision-attributed timing value.
+            </p>
+          </div>
+          <div class="columns is-centered has-text-centered" style="margin-top: 2.5rem;">
+            <div class="column">
+              <img src="homepage/static/images/teaser.png" class="paper-figure" alt="TradeLens motivation figure" style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"/>
+              <p class="has-text-grey" style="margin-top: 1.2rem; font-size: 0.95rem; font-style: italic;">
+                <strong>Figure 1:</strong> Motivation. A profitable agentic trading system may still fail to create useful trading value, and diagnosing “Why” is challenging because both returns and costs arise from intertwined deployment drivers.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background-color: #fafafa;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <div class="method-content">
+            <p>
+              The design goal of TradeLens is to make agentic trading systems auditable without assuming a specific agent architecture. TradeLens therefore defines a trace interface around three inputs: <strong>trading results</strong>, <strong>runtime traces</strong>, and <strong>system configurations</strong>.
+            </p>
+
+            <div class="columns is-centered has-text-centered method-figures" style="margin-top: 1.5rem;">
+              <div class="column">
+                <img src="homepage/static/images/framework.png" alt="TradeLens pipeline" style="border-radius: 8px;"/>
+                <p class="has-text-grey" style="margin-top: 1.2rem; font-size: 0.95rem;">
+                  <strong>Figure 2:</strong> The pipeline overview. Retail traders can utilize the toolkit to evaluate the profit–cost viability of their own agentic systems under realistic assumptions by providing trading results, runtime traces, and basic configurations. Consequently, they can gain iterative improvements and achieve promising results.
+                </p>
+              </div>
+            </div>
+
+            <div class="method-subsection" style="margin-top: 2rem;">
+              <h3 class="title is-4">Profit and Cost Attribution</h3>
+              <p>
+                Given an evaluation window $[1,T]$, let $V_0$ be the initial portfolio value and $V_T^{\mathrm{dyn}}$ be the realized terminal value of the deployed agentic system. The cumulative gross profit is
+              </p>
+              <div class="has-text-centered" style="margin: 1.5rem 0;">
+                <p>$$P_{1:T}=V_T^{\mathrm{dyn}}-V_0.$$</p>
+              </div>
+              <p>
+                For diagnosis, we separate gross profit using two nested counterfactual baselines. Let $V_T^{\mathrm{sys}}$ denote the terminal value of a passive market benchmark, and let $V_T^{\mathrm{base}}$ denote the terminal value obtained by holding the system’s initial allocation unchanged. Then
+              </p>
+              <div class="has-text-centered" style="margin: 1.5rem 0;">
+                <p>$$P_{1:T}=P^{\mathrm{sys}}+P^{\mathrm{asset}}+P^{\mathrm{timing}},$$</p>
+              </div>
+              <p>
+                where $P^{\mathrm{sys}}$, $P^{\mathrm{asset}}$, and $P^{\mathrm{timing}}$ correspond to market exposure, asset selection, and timing decisions, respectively. In our analysis, $P^{\mathrm{timing}}$ is treated as the profit component most directly attributable to agentic intervention. Costs are decomposed as LLM inference, trading execution, infrastructure and data-access, and residual stochastic terms.
+              </p>
+            </div>
+
+            <div class="method-subsection" style="margin-top: 2rem;">
+              <h3 class="title is-4">Two Viability Criteria</h3>
+              <p>
+                <strong>System viability</strong> asks whether the fully deployed pipeline pays for itself:
+              </p>
+              <div class="has-text-centered" style="margin: 1rem 0;">
+                <p>$$R_{1:T}=P_{1:T}-C_{1:T},\qquad \mathrm{SystemViable}=\mathbb{I}\!\left[R_{1:T}\geq 0\right].$$</p>
+              </div>
+              <p>
+                <strong>Agentic viability</strong> asks whether dynamic agent intervention itself is economically justified, comparing timing profit against decision-induced costs:
+              </p>
+              <div class="has-text-centered" style="margin: 1rem 0;">
+                <p>$$R_{1:T}^{\mathrm{agent}}=P^{\mathrm{timing}}-C_{1:T}^{\mathrm{dyn}},\qquad \mathrm{AgenticViable}=\mathbb{I}\!\left[R_{1:T}^{\mathrm{agent}}\geq 0\right].$$</p>
+              </div>
+            </div>
+
+            <div class="method-subsection" style="margin-top: 2rem;">
+              <h3 class="title is-4">Accounting and Diagnosis</h3>
+              <p>
+                The accounting layer reconstructs the trading trajectory and attributes both profit and cost. The profit module replays trading actions to recover portfolio values and decomposes gross profit into market, selection, and timing effects. The cost module accounts for commissions, LLM usage, infrastructure, data subscriptions, and uncertainty costs. The diagnosis layer converts these audit results into viability checks, failure-mode identification, and revision suggestions, rendered as a financial report and an agentic system diagnosis report.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experiments</h2>
+        <div class="content has-text-justified">
+          <div class="experiment-content">
+            <p>
+              We instantiate TradeLens on top of a representative agentic trading system, AI-Trader, over a fixed universe of liquid U.S. equities from December 1, 2025 to January 30, 2026, starting with an initial capital of $100,000. We vary backbone model, capital scale, trading frequency, and system architecture.
+            </p>
+
+            <div class="experiment-subsection" style="margin-top: 2rem;">
+              <h3 class="title is-4">RQ1. Backbone Models</h3>
+              <p>
+                Backbones differ mainly in how similar intelligence costs are converted into timing value and net margin. Failure modes also differ: some models, such as DeepSeek-V3.2, suffer mainly from poor asset selection; others, such as GLM-4.7, are dominated by negative timing effects.
+              </p>
+              <div class="columns is-centered has-text-centered experiment-results" style="margin-top: 1.5rem;">
+                <div class="column">
+                  <img src="homepage/static/images/exp-1.png" alt="Viability across backbone models" style="border: 1px solid #ddd; border-radius: 6px;"/>
+                  <p class="has-text-grey" style="margin-top: 0.5rem; font-size: 0.9rem;">
+                    <strong>Figure 3:</strong> Viability across backbone models. (a) System viability and (b) agentic viability: profit (y-axis) versus cost (x-axis) for 10 backbone LLMs under identical trading configurations.
+                  </p>
+                </div>
+              </div>
+              <div class="table-container" style="margin-top: 1.25rem;">
+                <table class="table is-striped is-fullwidth is-narrow">
+                  <caption class="has-text-grey" style="caption-side: bottom; padding-top: 0.6rem;">
+                    <strong>Table 1:</strong> Viability across backbone models (selected columns). Net profit measures system viability, while agentic profit measures whether timing value covers decision-induced costs.
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th>Metric</th>
+                      <th>DeepSeek-V3.2</th>
+                      <th>Qwen3-Max</th>
+                      <th>GLM-4.7</th>
+                      <th>GPT-5.2</th>
+                      <th>Claude Sonnet 4.5</th>
+                      <th>Mistral-large-3</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Gross Profit</td><td>−388.29</td><td>505.76</td><td>−2554.81</td><td>−50.43</td><td>519.40</td><td>777.81</td></tr>
+                    <tr><td>Timing Effect</td><td>−239.30</td><td>95.65</td><td>−2152.06</td><td>125.46</td><td>−326.02</td><td>1040.14</td></tr>
+                    <tr><td>Total Cost</td><td>304.86</td><td>258.79</td><td>296.95</td><td>223.04</td><td>255.04</td><td>414.82</td></tr>
+                    <tr><td>Net Profit</td><td>−693.15</td><td>246.97</td><td>−2851.76</td><td>−273.47</td><td>264.36</td><td>362.99</td></tr>
+                    <tr><td>Agentic Profit</td><td>−335.96</td><td>45.06</td><td>−2240.81</td><td>111.83</td><td>−372.86</td><td>833.52</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="experiment-subsection" style="margin-top: 2rem;">
+              <h3 class="title is-4">RQ2. Capital Scale</h3>
+              <p>
+                Capital scaling does not simply dilute fixed costs; it amplifies the value and risk of model’s timing behavior.
+              </p>
+              <div class="columns is-centered has-text-centered experiment-results" style="margin-top: 1.5rem;">
+                <div class="column">
+                  <img src="homepage/static/images/exp-2.svg" alt="Viability across capital scale" style="border: 1px solid #ddd; border-radius: 6px; background: #fff;"/>
+                  <p class="has-text-grey" style="margin-top: 0.5rem; font-size: 0.9rem;">
+                    <strong>Figure 4:</strong> Viability across capital scale. Net Profit and Agentic Profit under varying initial cash investment scale for GPT-5.2 and DeepSeek-V3.2.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="experiment-subsection" style="margin-top: 2rem;">
+              <h3 class="title is-4">RQ3. Trading Frequency</h3>
+              <p>
+                Higher frequency fails when extra decisions add noisy trades and timing errors. For both backbones, daily trading outperforms hourly trading in terms of both net profit and agentic profit.
+              </p>
+              <div class="columns is-centered has-text-centered experiment-results" style="margin-top: 1.5rem;">
+                <div class="column">
+                  <img src="homepage/static/images/exp-3.png" alt="Viability across trading frequency" style="border: 1px solid #ddd; border-radius: 6px;"/>
+                  <p class="has-text-grey" style="margin-top: 0.5rem; font-size: 0.9rem;">
+                    <strong>Figure 5:</strong> Viability across trading frequency. Cumulative net profit and agentic profit over time under hourly (dashed) and daily (solid) trading frequencies for GPT-5.2 and DeepSeek-V3.2.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="experiment-subsection" style="margin-top: 2rem;">
+              <h3 class="title is-4">RQ4. System Architecture</h3>
+              <p>
+                CoT has the lowest total cost for both backbones, but it does not produce the best outcomes. DeepFund is the only architecture with positive net profit and agentic profit for DeepSeek-V3.2, and it also yields the highest values for GPT-5.2. Architectural complexity helps only when its added reasoning and coordination become decision-attributed gains, especially timing value.
+              </p>
+            </div>
+
+            <div class="experiment-subsection" style="margin-top: 3rem;">
+              <h3 class="title is-4">Additional Experimental Details</h3>
+              <p style="margin-bottom: 2rem;">
+                The paper provides further analysis beyond the results above. For the following, we refer readers to the full paper:
+              </p>
+
+              <div style="background: linear-gradient(to right, #f8f9fa 0%, #ffffff 100%); border: 1px solid #e1e4e8; padding: 2.5rem; margin: 2rem 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                <div class="columns is-multiline" style="margin-bottom: 0;">
+                  <div class="column is-6" style="padding-bottom: 0.5rem;">
+                    <div style="display: flex; align-items: start; margin-bottom: 1.5rem;">
+                      <div style="min-width: 8px; height: 8px; background: #3273dc; border-radius: 50%; margin-top: 0.5rem; margin-right: 1rem;"></div>
+                      <div>
+                        <strong style="color: #2c3e50;">Market-regime sensitivity:</strong>
+                        <p style="color: #555; margin-top: 0.3rem; line-height: 1.6;">Market regimes reshape profit sources more strongly than system costs</p>
+                      </div>
+                    </div>
+                    <div style="display: flex; align-items: start;">
+                      <div style="min-width: 8px; height: 8px; background: #3273dc; border-radius: 50%; margin-top: 0.5rem; margin-right: 1rem;"></div>
+                      <div>
+                        <strong style="color: #2c3e50;">Forward diagnosis:</strong>
+                        <p style="color: #555; margin-top: 0.3rem; line-height: 1.6;">Whether December diagnostic signals usefully inform later deployment decisions</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="column is-6" style="padding-bottom: 0.5rem;">
+                    <div style="display: flex; align-items: start; margin-bottom: 1.5rem;">
+                      <div style="min-width: 8px; height: 8px; background: #3273dc; border-radius: 50%; margin-top: 0.5rem; margin-right: 1rem;"></div>
+                      <div>
+                        <strong style="color: #2c3e50;">Practitioner feedback:</strong>
+                        <p style="color: #555; margin-top: 0.3rem; line-height: 1.6;">Interpretability of joint profit–cost diagnosis in private deployments (13 retail traders)</p>
+                      </div>
+                    </div>
+                    <div style="display: flex; align-items: start;">
+                      <div style="min-width: 8px; height: 8px; background: #3273dc; border-radius: 50%; margin-top: 0.5rem; margin-right: 1rem;"></div>
+                      <div>
+                        <strong style="color: #2c3e50;">Limitations:</strong>
+                        <p style="color: #555; margin-top: 0.3rem; line-height: 1.6;">Diagnostic observations under specific settings, not general claims about intrinsic trading ability</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="has-text-centered" style="margin-top: 2.5rem; padding: 2rem; background: #fafbfc; border-radius: 8px;">
+                <p style="margin-bottom: 1.5rem; color: #586069; font-size: 1.05rem;">
+                  📄 For complete experimental protocols, additional results, and comprehensive discussions
+                </p>
+                <a href="https://arxiv.org/pdf/2607.10286.pdf" target="_blank"
+                   class="button is-link is-medium" style="border-radius: 6px; padding-left: 2rem; padding-right: 2rem; box-shadow: 0 4px 12px rgba(50, 115, 220, 0.3);">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Read the Full Paper</span>
+                </a>
+                <p style="margin-top: 1.2rem; font-size: 0.9rem; color: #6a737d; font-style: italic;">
+                  Duan et al., "Can Agentic Trading Systems Pay for Their Own Intelligence?", Findings of EMNLP 2026
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title is-3">Citation</h2>
+      <p class="has-text-centered" style="margin-bottom: 1.5rem; color: #555; font-size: 1.05rem; font-weight: 500;">
+        If you find TradeLens useful for your research, please consider citing our paper:
+      </p>
+      <div class="bibtex-container">
+        <button class="copy-button" onclick="copyBibTeX(this)">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+        <pre><code>@article{duan2026can,
+  title={Can Agentic Trading Systems Pay for Their Own Intelligence?},
+  author={Duan, Qiqi and Li, Changlun and Wang, Chen and Zhang, Fan and Wang, Mengxiang and Miao, Dayi and Ma, Peixian and Yan, Jiangpeng and Chen, Liyuan and Liu, Shuoling and Nakov, Preslav and Luo, Yuyu and Tang, Nan},
+  journal={Findings of the Association for Computational Linguistics: EMNLP 2026},
+  year={2026}
+}</code></pre>
+      </div>
+    </div>
+</section>
+
+<script>
+function copyBibTeX(button) {
+  const code = button.nextElementSibling.querySelector('code');
+  const text = code.textContent;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    button.classList.add('copied');
+
+    setTimeout(() => {
+      button.innerHTML = originalText;
+      button.classList.remove('copied');
+    }, 2000);
+  }).catch(err => {
+    console.error('Copy failed:', err);
+    button.innerHTML = '<i class="fas fa-times"></i> Failed';
+    setTimeout(() => {
+      button.innerHTML = '<i class="fas fa-copy"></i> Copy';
+    }, 2000);
+  });
+}
+</script>
+
+
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p style="color: #888; text-align: center;">
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" style="color: #888;">Academic Project Page Template</a>
+            adopted from the <a href="https://nerfies.github.io" target="_blank" style="color: #888;">Nerfies</a> project page.
+            Licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color: #888;">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </body>
+  </html>

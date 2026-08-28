@@ -1,0 +1,402 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* 设置页面容器最大宽度为 1400px */
+.container.is-max-desktop {
+  max-width: 1150px;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  padding: 20px;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+.slider-pagination .slider-page {
+  background: #000000;
+}
+
+.eql-cntrb { 
+  font-size: smaller;
+}
+
+/* Method and Experiment Section Styles */
+.method-content, .experiment-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.method-subsection, .experiment-subsection {
+  border-left: 3px solid #3273dc;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.method-subsection h3, .experiment-subsection h3 {
+  color: #3273dc;
+  margin-bottom: 1rem;
+}
+
+.method-figures, .experiment-figures {
+  margin: 2rem 0;
+}
+
+.paper-figure,
+.method-figures img,
+.experiment-results img {
+  display: block;
+  width: 72%;
+  max-width: 620px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.method-figures img:hover, .experiment-results img:hover {
+  transform: scale(1.02);
+}
+
+/* Table styling for experiments */
+.experiment-content .table {
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.experiment-content .table th {
+  background-color: #f5f5f5 !important;
+  color: #363636;
+  font-weight: 600;
+  border-bottom: 2px solid #dbdbdb;
+}
+
+.experiment-content .table td {
+  vertical-align: middle;
+}
+
+/* Mathematical formula styling */
+.MathJax {
+  font-size: 1.1em !important;
+}
+
+/* Figure caption styling */
+.has-text-grey {
+  font-style: italic;
+}
+
+/* Header Logos Section Styles */
+.header-logos {
+  --header-logo-max: 38px;
+  --header-pad: 0.75rem;
+  background: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  min-height: calc((var(--header-logo-max) + 2 * var(--header-pad)) * 1.3);
+}
+
+.header-logos .container {
+  width: 100%;
+}
+
+.header-logos .columns {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.header-logos .column {
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.conference-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.institution-logos {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.institution-logo .logo-placeholder {
+  font-size: 1rem;
+}
+
+/* Responsive design for logos */
+@media screen and (max-width: 768px) {
+  .header-logos .columns {
+    flex-direction: column;
+  }
+  
+  .logo-separator {
+    display: none !important;
+  }
+  
+  .institution-logo .logo-placeholder,
+  .conference-logo .logo-placeholder {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .institution-logos {
+    flex-direction: column;
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .paper-figure,
+  .method-figures img,
+  .experiment-results img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .method-subsection, .experiment-subsection {
+    padding-left: 1rem;
+    border-left-width: 2px;
+  }
+  
+  .method-content, .experiment-content {
+    font-size: 1rem;
+  }
+}
+
+/* BibTeX Section Styles */
+#BibTeX {
+  background: linear-gradient(135deg, #667eea10 0%, #764ba210 100%);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+#BibTeX .title {
+  color: #2c3e50;
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+#BibTeX pre {
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-left: 4px solid #3273dc;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+#BibTeX pre:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+#BibTeX pre code {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', 'Fira Mono', 'Roboto Mono', 'Courier New', Courier, monospace;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: #24292e;
+  display: block;
+  overflow-x: auto;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* Copy button for BibTeX */
+.bibtex-container {
+  position: relative;
+}
+
+.copy-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #3273dc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.875rem;
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.2s ease, transform 0.1s ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(50, 115, 220, 0.3);
+}
+
+.bibtex-container:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background: #2366d1;
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+.copy-button.copied {
+  background: #48c774;
+}
+
+/* Responsive BibTeX styles */
+@media screen and (max-width: 768px) {
+  #BibTeX pre {
+    padding: 1rem 1.25rem;
+  }
+  
+  #BibTeX pre code {
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+  
+  .copy-button {
+    opacity: 1;
+    position: static;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
+
+
+
