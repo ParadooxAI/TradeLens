@@ -39,6 +39,9 @@
   </p>
 </div>
 
+---
+
+## 📖 Overview
 
 TradeLens is a trace-grounded toolkit for **measuring** and **diagnosing** the *profit vs. cost* of agentic trading systems.
 
@@ -47,73 +50,77 @@ Large language model (LLM) agents are increasingly used in trading systems, wher
 
 <p align="center">
   <img src="figure/overview.png" width="48%" alt="TradeLens Overview" />
+  <img src="figure/framework.png" width="48%" alt="TradeLens Framework" />
 </p>
 
 
 
 We argue that **agentic viability** should be a central evaluation criterion: dynamic LLM-mediated decisions should generate enough incremental profit to justify the costs they induce. TradeLens reconstructs trading trajectories from records and traces, attributes profit and cost to interpretable evidence, and diagnoses whether, where, and why an agent succeeds or fails to pay for its own intelligence.
 
-
-
-## What It Does
-
-TradeLens supports:
+Overall, TradeLens supports:
 
 1. **Measurement** — profit and cost attribution for multi-factor agentic trading deployments.
 2. **Diagnosis** — trading performance analysis and system-level diagnosis with evidence-grounded revision suggestions.
 
-<p align="center">
-  <img src="figure/framework.png" width="48%" alt="TradeLens Framework" />
-</p>
+## 📚 Citations
 
+```bibtex
+@article{duan2026can,
+  title={Can Agentic Trading Systems Pay for Their Own Intelligence?},
+  author={Duan, Qiqi and Li, Changlun and Wang, Chen and Zhang, Fan and Wang, Mengxiang and Miao, Dayi and Ma, Peixian and Yan, Jiangpeng and Chen, Liyuan and Liu, Shuoling and others},
+  journal={arXiv preprint arXiv:2607.10286},
+  year={2026}
+}
+```
 
+## 📑 Introduction
 
-
-
-## Introduce 
-
-### Workflow
+### Repository Structure
 
 The toolkit loads experiment records and static config from `data/`, computes trading costs (commission, token usage, infra, monthly data subscription, and a per-day uncertain add-on), reconstructs portfolio value, and decomposes profit into market / selection / timing effects (full-cash and invested-only benchmarks).
 
 It writes reports under `result/` and, when configured, runs LLM diagnosis on top of the financial report.
 
 
-### Repository Structure
-
-```
+```text
 TradeLens/
-├── data/              # Input: records, static configs, price JSONL
-├── toolkit/           # Toolkit: measurement + diagnosis
-├── result/            # Output: reports and charts 
-├── main.py            # Entry: python main.py → toolkit.main
-├── config_llm.json    # Per-model token pricing
-├── config.json        # Paths into data diagnosis settings
-├── env.example        # API keys for LLM diagnosis
+├── 📁 data/              # Input: records, static configs, price JSONL
+├── 📁 toolkit/           # Toolkit: measurement + diagnosis
+│   ├── 📄 main.py        # CLI and end-to-end pipeline
+│   ├── 📁 cost/          # Commission, token/infra/monthly/uncertain costs
+│   ├── 📁 profit/        # Records, portfolio valuation, profit breakdown
+│   ├── 📁 report/        # Financial report, plots, LLM agent, HTML render
+│   └── 📄 config.py      # Load config.json, static config, LLM pricing
+├── 📁 result/            # Output: one folder per run (gitignored)
+├── 📄 main.py            # Entry: python main.py → toolkit.main
+├── 📄 config_llm.json    # Per-model token pricing
+├── 📄 config.json        # Paths into data diagnosis settings
+└── 📄 env.example        # API keys for LLM diagnosis
 ```
 
-| Path | Role |
-|------|------|
-| **`data/`** | **Input.** Experiment `experiment_records_*.jsonl`, `static-*.jsonl`, `price-data.jsonl` , optional `market-base.jsonl`. |
-| **`toolkit/`** | **Toolkit.** Measurement (`cost/`, `profit/`) and diagnosis (`report/`). Run via `python main.py`. |
-| **`result/`** | **Output.** One folder per run: `result/<model>-<cash>-<frequency>/`. Gitignored. |
+### Documentation Navigation
+
+- [📖 Overview](#-overview)
+- [📚 Citations](#-citations)
+- [📑 Introduction](#-introduction)
+  - [Repository Structure](#repository-structure)
+  - [Documentation Navigation](#documentation-navigation)
+- [📝 Usage](#-usage)
+  - [Quick Start](#quick-start)
+  - [CLI](#cli)
+  - [Inputs (`data/` + configuration)](#inputs-data--configuration)
+  - [Outputs (`result/`)](#outputs-result)
+- [Integrate with your agentic trading system](#integrate-with-your-agentic-trading-system)
+  - [Step 1. Export `experiment_records.jsonl`](#step-1-export-experiment_recordsjsonl)
+  - [Step 2. Record your setting to `static.json`](#step-2-record-your-setting-to-staticjson)
+  - [Step 3. Provide prices data (`price-data.jsonl`)](#step-3-provide-prices-data-price-datajsonl)
+  - [Step 4. Run TradeLens on your exported artifacts](#step-4-run-tradelens-on-your-exported-artifacts)
+- [Troubleshooting](#troubleshooting)
 
 
-### Inside `toolkit/`
+## 📝 Usage
 
-| Module | Responsibility |
-|--------|----------------|
-| `toolkit/main.py` | CLI and end-to-end pipeline |
-| `toolkit/cost/` | Commission, token/infra/monthly/uncertain costs |
-| `toolkit/profit/` | Records, portfolio valuation, profit breakdown |
-| `toolkit/report/` | Financial report, plots, LLM agent, HTML render |
-| `toolkit/config.py` | Load `config.json`, static config, LLM pricing |
-
-
-
-## Usage
-
-## Quick Start
+### Quick Start
 
 1. `python -m venv .venv` && `source .venv/bin/activate`
 2. `pip install -r requirements.txt`
@@ -171,7 +178,7 @@ Common files:
 
 TradeLens is an **after-the-fact** analysis toolkit: you run your own agentic trading system, export its records/traces, then run TradeLens to attribute profit & cost and generate reports.
 
-### Step 1) Export `experiment_records.jsonl`
+### Step 1. Export `experiment_records.jsonl`
 
 Write one JSON object per line (JSONL). Each line corresponds to one **decision day** (recommended date format: `YYYY-MM-DD`).
 
@@ -187,7 +194,7 @@ Notes:
 - If you provide both `analysis_price` and `execution_price`, TradeLens can estimate slippage/opportunity cost.
 - If you provide `timestamp.analysis_time` and `timestamp.decision_time`, TradeLens can compute analysis→decision latency.
 
-### Step 2) Record your setting to `static.json`
+### Step 2. Record your setting to `static.json`
 
 TradeLens expects a JSON file with a required `structure` field. Fields in `structure` are merged into the top-level config.
 
@@ -206,7 +213,7 @@ Minimal example:
 }
 ```
 
-### Step 3) Provide prices data (`price-data.jsonl`)
+### Step 3. Provide prices data (`price-data.jsonl`)
 
 Provide trading asset prices for your predefined time window from the same data source as your system.
 
@@ -214,7 +221,7 @@ Provide trading asset prices for your predefined time window from the same data 
 {"Meta Data":{"2. Symbol":"AAPL"},"Time Series (Daily)":{"2026-01-02":{"1. buy price":"188.12"},"2026-01-03":{"1. buy price":"190.05"}}}
 ```
 
-### Step 4) Run TradeLens on your exported artifacts
+### Step 4. Run TradeLens on your exported artifacts
 
 ```bash
 python main.py --records /path/to/experiment_records.jsonl --static /path/to/static.json --out result/my-run
