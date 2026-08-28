@@ -1,4 +1,44 @@
-# TradeLens Toolkit
+<div align="center">
+<h1>Can Agentic Trading Systems Pay for Their Own Intelligence?</h1>
+</div>
+
+<div align="center">
+  <p>
+      Qiqi Duan<sup>1,*</sup>, Changlun Li<sup>2,*</sup>, Chen Wang<sup>1,*</sup>, Fan Zhang<sup>4,5</sup>, Mengxiang Wang<sup>1</sup>, Dayi Miao<sup>1</sup>, Peixian Ma<sup>2</sup>, Jiangpeng Yan<sup>3</sup>, Liyuan Chen<sup>3</sup>, Shuoling Liu<sup>3</sup>, Preslav Nakov<sup>4</sup>, Yuyu Luo<sup>1,2</sup>, Nan Tang<sup>1,2</sup> 
+  </p>
+
+  <p>
+      <sup>1</sup>HKUST(GZ)
+      <sup>2</sup>Paradoox AI
+      <sup>3</sup>E Fund Management Co., Ltd
+      <sup>4</sup>MBZUAI
+      <sup>5</sup>The University of Tokyo
+  </p>
+</div>
+
+<div align="center">
+  <p>
+    <sup>*</sup>Equal contribution. &nbsp;&nbsp;
+    <i class="fa-solid fa-envelope"></i> Contact: nantang@hkust-gz.edu.cn
+  </p>
+</div>
+
+
+<div align="center" style="display: flex; gap: 5px; justify-content: center;">
+  <a href=""><img src="https://img.shields.io/badge/🏠_Homepage-blue?style=for-the-badge"/></a>
+  <a href="https://arxiv.org/abs/2607.10286"><img src="https://img.shields.io/badge/arXiv-red?style=for-the-badge&logo=arxiv"/></a>
+  <a href="https://github.com/ParadooxAI/TradeLens"><img src="https://img.shields.io/badge/GitHub-black?style=for-the-badge&logo=github"/></a>
+  <a href="https://github.com/ParadooxAI/TradeLens/stargazers"><img src="https://img.shields.io/github/stars/ParadooxAI/TradeLens?style=for-the-badge&color=white"/></a>
+</div>
+
+<br>
+
+<div align="center" style="display: flex; gap: 5px; justify-content: center;">
+  <p>
+  <b>🔥  Our work is accepted by EMNLP 2026 Findings. Welcome to star and cite our work! ✨</b> 
+  </p>
+</div>
+
 
 TradeLens is a trace-grounded toolkit for **measuring** and **diagnosing** the *profit vs. cost* of agentic trading systems.
 
