@@ -4,15 +4,14 @@
 
 <div align="center">
   <p>
-      Qiqi Duan<sup>1,*</sup>, Changlun Li<sup>1,2,*</sup>, Chen Wang<sup>1,*</sup>, Fan Zhang<sup>4,5</sup>, Mengxiang Wang<sup>1</sup>, Dayi Miao<sup>1</sup>, Peixian Ma<sup>2</sup>, Jiangpeng Yan<sup>3</sup>, Liyuan Chen<sup>3</sup>, Shuoling Liu<sup>3</sup>, Preslav Nakov<sup>4</sup>, Yuyu Luo<sup>1,2</sup>, Nan Tang<sup>1,2</sup> 
+      Qiqi Duan<sup>1,*</sup>, Changlun Li<sup>1,2,*</sup>, Chen Wang<sup>1,*</sup>, Fan Zhang<sup>2,4</sup>, Mengxiang Wang<sup>1</sup>, Dayi Miao<sup>1</sup>, Peixian Ma<sup>2</sup>, Jiangpeng Yan<sup>3</sup>, Liyuan Chen<sup>3</sup>, Shuoling Liu<sup>3</sup>, Preslav Nakov<sup>4</sup>, Yuyu Luo<sup>1,2</sup>, Nan Tang<sup>1,2</sup> 
   </p>
 
   <p>
       <sup>1</sup>HKUST(GZ)
-      <sup>2</sup>Paradoox AI
+      <sup>2</sup>Paradoox AI Research
       <sup>3</sup>E Fund Management Co., Ltd
       <sup>4</sup>MBZUAI
-      <sup>5</sup>The University of Tokyo
   </p>
 </div>
 
@@ -49,8 +48,7 @@ Large language model (LLM) agents are increasingly used in trading systems, wher
 
 
 <p align="center">
-  <img src="figure/overview.png" width="48%" alt="TradeLens Overview" />
-  <img src="figure/framework.png" width="48%" alt="TradeLens Framework" />
+  <img src="figure/overview.png" width="70%" alt="TradeLens Overview" />
 </p>
 
 
@@ -62,14 +60,19 @@ Overall, TradeLens supports:
 1. **Measurement** — profit and cost attribution for multi-factor agentic trading deployments.
 2. **Diagnosis** — trading performance analysis and system-level diagnosis with evidence-grounded revision suggestions.
 
+<p align="center">
+  <img src="figure/framework-v2.png" width="90%" alt="TradeLens Framework" />
+</p>
+
 ## 📚 Citations
 
 ```bibtex
-@article{duan2026can,
+@inproceedings{duan2026can,
   title={Can Agentic Trading Systems Pay for Their Own Intelligence?},
-  author={Duan, Qiqi and Li, Changlun and Wang, Chen and Zhang, Fan and Wang, Mengxiang and Miao, Dayi and Ma, Peixian and Yan, Jiangpeng and Chen, Liyuan and Liu, Shuoling and others},
-  journal={arXiv preprint arXiv:2607.10286},
-  year={2026}
+  author={Duan, Qiqi and Li, Changlun and Wang, Chen and Zhang, Fan and Wang, Mengxiang and Miao, Dayi and Ma, Peixian and Yan, Jiangpeng and Chen, Liyuan and Liu, Shuoling and Nakov, Preslav and Luo, Yuyu and Tang, Nan},
+  booktitle={The 2026 Conference on Empirical Methods in Natural Language Processing},
+  year={2026},
+  url={https://openreview.net/forum?id=4AWZckdl2J}
 }
 ```
 
@@ -234,3 +237,4 @@ If your system makes multiple intraday decisions, pre-aggregate records to hourl
 - **`records_path not found` / `static_path not found`**: ensure `config.json` points to existing files under `data/`, or pass `--records/--static` explicitly.
 - **Profit breakdown warning about BUY/SELL**: if your records contain only `HOLD` days (no executed trades), profit breakdown charts/attribution may be skipped.
 - **Plotting warnings (`matplotlib` / `numpy`)**: reinstall dependencies in a fresh venv (e.g. recreate `.venv`, then `pip install -r requirements.txt`).
+- **Uncertain cost changes between runs**: the per-day uncertain add-on in `toolkit/main.py` has no default seed. Call `random.seed(<int>)` at process start (or immediately before that line) if you want comparable reports across runs.
